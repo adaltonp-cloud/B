@@ -6,7 +6,7 @@
   "description": "Neon Dash Ultimate é um shooter arcade intenso com 1000 níveis. Desvie, atire e restaure o sistema neon neste bullet-hell definitivo.",
   "lang": "pt-BR",
   "dir": "ltr",
-  "start_url": "./index.html",
+  "start_url": "/",
   "scope": "./",
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone", "fullscreen"],
