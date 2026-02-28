@@ -19,7 +19,8 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
         levelTest: 'TESTE DE NÍVEIS (DEV)', debugInfo: 'TODOS OS NÍVEIS DESBLOQUEADOS',
         enterPassword: 'INSIRA A CHAVE DE ACESSO', unlock: 'DESBLOQUEAR',
         customMusic: 'MÚSICA PERSONALIZADA', selectMusic: 'SELECIONAR MP3', clearMusic: 'REMOVER MÚSICA',
-        musicPlaying: 'REPRODUZINDO', musicVolume: 'VOLUME DA MÚSICA'
+        musicPlaying: 'REPRODUZINDO', musicVolume: 'VOLUME DA MÚSICA',
+        handTracking: 'RASTREAMENTO DE MÃO', handTrackingDesc: 'Mão aberta: move | Mão fechada: move e atira'
     },
     en_US: {
         createdBy: 'CREATED BY: BON..', play: 'PLAY', bossMode: 'BOSS MODE', skins: 'SKINS / CORE',
@@ -40,7 +41,8 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
         levelTest: 'LEVEL TEST (DEV)', debugInfo: 'ALL LEVELS UNLOCKED',
         enterPassword: 'ENTER ACCESS KEY', unlock: 'UNLOCK',
         customMusic: 'CUSTOM MUSIC', selectMusic: 'SELECT MP3', clearMusic: 'REMOVE MUSIC',
-        musicPlaying: 'PLAYING', musicVolume: 'MUSIC VOLUME'
+        musicPlaying: 'PLAYING', musicVolume: 'MUSIC VOLUME',
+        handTracking: 'HAND TRACKING', handTrackingDesc: 'Open hand: move | Closed hand: move & shoot'
     },
     es_ES: {
         createdBy: 'CREADO POR: BON..', play: 'JOGAR', bossMode: 'MODO BOSS', skins: 'SKINS / NÚCLEO',
@@ -61,7 +63,8 @@ export const TRANSLATIONS: Record<string, Record<string, string>> = {
         levelTest: 'PRUEBA DE NIVELES (DEV)', debugInfo: 'TODOS OS NIVELES DESBLOQUEADOS',
         enterPassword: 'INGRESE LA CLAVE', unlock: 'DESBLOQUEAR',
         customMusic: 'MÚSICA PERSONALIZADA', selectMusic: 'SELECIONAR MP3', clearMusic: 'QUITAR MÚSICA',
-        musicPlaying: 'REPRODUCIENDO', musicVolume: 'VOLUMEN DE MÚSICA'
+        musicPlaying: 'REPRODUCIENDO', musicVolume: 'VOLUMEN DE MÚSICA',
+        handTracking: 'RASTREO DE MANO', handTrackingDesc: 'Mano abierta: mueve | Mano cerrada: mueve y dispara'
     }
 };
 

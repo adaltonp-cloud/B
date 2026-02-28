@@ -16,6 +16,7 @@ export interface SaveData {
     tutorialSeen: boolean;
     maxBossUnlocked: number;
     musicVolume: number;
+    handTrackingEnabled: boolean;
 }
 
 export interface Player {

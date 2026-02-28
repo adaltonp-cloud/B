@@ -5,6 +5,7 @@ import { SaveService } from './services/saveService';
 import { audio } from './services/audioService';
 import { getTranslation } from './constants';
 import GameCanvas from './components/GameCanvas';
+import { useHandTracking } from './hooks/useHandTracking';
 
 const App: React.FC = () => {
     const [gameState, setGameState] = useState<GameState>(GameState.INTRO);
@@ -18,6 +19,9 @@ const App: React.FC = () => {
     const [bgOffset, setBgOffset] = useState(0);
     const [viewPolicy, setViewPolicy] = useState(false);
     
+    // Hand Tracking
+    const handData = useHandTracking(saveData.handTrackingEnabled);
+
     // Custom Music State
     const [customMusicName, setCustomMusicName] = useState<string | null>(null);
     const musicInputRef = useRef<HTMLInputElement>(null);
@@ -167,6 +171,7 @@ const App: React.FC = () => {
                             setSaveData(p => ({...p, maxBossUnlocked: lv})); 
                         } 
                     }} 
+                    handData={handData}
                 />
 
                 {gameState === GameState.INTRO && (
@@ -233,6 +238,26 @@ const App: React.FC = () => {
                             ) : (
                                 <div className="space-y-6">
                                     <button onClick={() => { if (!document.fullscreenElement) document.documentElement.requestFullscreen(); else document.exitFullscreen(); }} className="w-full py-5 bg-white/10 border-2 border-white/20 text-white font-black text-sm rounded-2xl">{t('fullScreen')}</button>
+                                    <div className="space-y-4 p-5 bg-white/5 border border-white/10 rounded-2xl">
+                                        <p className="text-[11px] text-cyan-400 font-black uppercase tracking-widest mb-1">{t('handTracking')}</p>
+                                        <div className="flex items-center justify-between gap-4">
+                                            <div className="flex-1">
+                                                <p className="text-[10px] text-white/70 uppercase font-bold">{t('handTrackingDesc')}</p>
+                                            </div>
+                                            <button 
+                                                onClick={() => {
+                                                    const newVal = !saveData.handTrackingEnabled;
+                                                    SaveService.save({ handTrackingEnabled: newVal });
+                                                    setSaveData(prev => ({ ...prev, handTrackingEnabled: newVal }));
+                                                    audio.playCollect();
+                                                }}
+                                                className={`w-14 h-8 rounded-full relative transition-all ${saveData.handTrackingEnabled ? 'bg-cyan-500' : 'bg-white/10'}`}
+                                            >
+                                                <div className={`absolute top-1 w-6 h-6 bg-white rounded-full transition-all ${saveData.handTrackingEnabled ? 'left-7' : 'left-1'}`} />
+                                            </button>
+                                        </div>
+                                    </div>
+
                                     <div className="space-y-4 p-5 bg-white/5 border border-white/10 rounded-2xl">
                                         <p className="text-[11px] text-cyan-400 font-black uppercase tracking-widest mb-1">{t('customMusic')}</p>
                                         <div className="space-y-3">

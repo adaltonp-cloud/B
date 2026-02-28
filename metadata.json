@@ -1,5 +1,5 @@
 {
   "name": "of Neon Dash Ultimate",
   "description": "The ultimate neon arcade experience with 1000 levels of bullet-hell action and customization.",
-  "requestFramePermissions": []
+  "requestFramePermissions": ["camera"]
 }

@@ -17,7 +17,8 @@ export const SaveService = {
             language: 'pt_BR',
             tutorialSeen: false,
             maxBossUnlocked: 0,
-            musicVolume: 0.4
+            musicVolume: 0.4,
+            handTrackingEnabled: false
         };
         if (!data) return defaultData;
         try {

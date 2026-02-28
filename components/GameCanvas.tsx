@@ -1,6 +1,7 @@
 
 import React, { useRef, useEffect, useCallback } from 'react';
 import { GameState, ThemeType, Player, Enemy, Bullet, Boss, Powerup, TrailPart, Star } from '../types';
+import { HandData } from '../hooks/useHandTracking';
 import { audio } from '../services/audioService';
 import { getTranslation } from '../constants';
 
@@ -16,6 +17,7 @@ interface GameCanvasProps {
     onBossWarning: () => void;
     onBossSpawned: () => void;
     onBossEncountered: (level: number) => void;
+    handData?: HandData;
 }
 
 const GameCanvas: React.FC<GameCanvasProps> = (props) => {
@@ -30,7 +32,8 @@ const GameCanvas: React.FC<GameCanvasProps> = (props) => {
         onLevelComplete,
         onBossWarning,
         onBossSpawned,
-        onBossEncountered
+        onBossEncountered,
+        handData
     } = props;
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -235,6 +238,23 @@ const GameCanvas: React.FC<GameCanvasProps> = (props) => {
         if ((s.keys["ArrowRight"] || s.keys["d"]) && s.player.x < width - s.player.size) s.player.x += moveSpeed;
         if ((s.keys["ArrowUp"] || s.keys["w"]) && s.player.y > 0) s.player.y -= moveSpeed;
         if ((s.keys["ArrowDown"] || s.keys["s"]) && s.player.y < height - s.player.size) s.player.y += moveSpeed;
+        
+        // Hand Tracking Control
+        if (handData && handData.isActive) {
+            const targetX = handData.x * width - s.player.size / 2;
+            const targetY = handData.y * height - s.player.size / 2;
+            
+            // Smooth movement
+            s.player.x += (targetX - s.player.x) * 0.2;
+            s.player.y += (targetY - s.player.y) * 0.2;
+            
+            // Constrain
+            s.player.x = Math.max(0, Math.min(width - s.player.size, s.player.x));
+            s.player.y = Math.max(0, Math.min(height - s.player.size, s.player.y));
+            
+            if (handData.isClosed) fireBullet();
+        }
+
         if (s.keys[" "] || s.weaponType === 'rapid') fireBullet();
 
         if (gameState === GameState.PLAYING) {
